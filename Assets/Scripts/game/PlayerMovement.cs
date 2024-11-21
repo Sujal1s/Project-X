@@ -12,6 +12,7 @@ public class PlayerMovement : MonoBehaviour
     public Button jumpButton;
     public Button quitButton; // Reference to the quit button
 
+
     void Start()
     {
         body = GetComponent<Rigidbody2D>();
@@ -67,4 +68,6 @@ public class PlayerMovement : MonoBehaviour
         Application.Quit();
         Debug.Log("Quit Game");
     }
+
+ 
 }

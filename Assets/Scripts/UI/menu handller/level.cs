@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class LevelManager : MonoBehaviour
+public class level : MonoBehaviour
 {
     // Public variables to assign the buttons in the Unity Editor
     public Button level1Button;
