@@ -45,7 +45,7 @@ public class PlayerHealth : MonoBehaviour
                 Animation.SetTrigger("Die");                            
                 GetComponent<PlayerMovement>().enabled = true;
                 dead = true;
-                SceneManager.LoadScene("Game Over screen");
+                SceneManager.LoadScene("Retry screen");
             }
             
             
