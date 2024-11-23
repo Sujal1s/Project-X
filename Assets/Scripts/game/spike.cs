@@ -1,16 +1,27 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class spike : MonoBehaviour
 {
-    // This method is called when another collider enters the trigger collider attached to this object
-    /*private void OnTriggerEnter2D(Collider2D other)
+    [SerializeField] private float Damage;
+
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        // Check if the object that collided with the spike is the player
-        if (other.CompareTag("Player"))
+        if(collision.tag == "Player")
         {
-            // Load the retry screen
-            SceneManager.LoadScene("Retry screen");
+            collision.GetComponent<PlayerHealth>().Healthloose(Damage);
         }
-    }*/
+    }
+    // Start is called before the first frame update
+    void Start()
+    {
+        
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        
+    }
 }

@@ -1,97 +1,73 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class PlayerControl : MonoBehaviour
+public class PlayerMovement : MonoBehaviour
 {
-    //Variables for Movements(Walking)
-    public float PlayerSpeed = 5f;
-    public float PlayerMovement = 0f;
+    public float speed = 10f;
+    public float jumpForce = 5f;
+    public Rigidbody2D body;
+    public bool isJumping;
+    public Button jumpButton;
+    public Button quitButton; // Reference to the quit button
+    public Animator _Animator;
+    private SpriteRenderer spriteRenderer;
 
-    //Variables for Movements(Jumping)
-    public float PlayerJumpSpeed = 4f;
-    public Transform JumpGroundCheck;
-    public float JumpGround;
-    public LayerMask GroundLayer;
-    private bool IsTouchingGround;
-
-    //Variable for Player Animation
-    private Animator PlayerAnimation;
-
-    //Variable for Player Checkpoint and Respawn
-    public Vector3 PlayerRespawn;
-    public LevelManager GameLevelManager;
-
-    //Defining Rigidbody
-    Rigidbody2D PlayerRigid;
-
-    [System.Obsolete]
     void Start()
     {
-        PlayerRigid = GetComponent<Rigidbody2D>();
-        PlayerAnimation = GetComponent<Animator>();
-        PlayerRespawn = transform.position;
-        GameLevelManager = FindObjectOfType<LevelManager>();
+        body = GetComponent<Rigidbody2D>();
+        body.constraints = RigidbodyConstraints2D.FreezeRotation; // Disable Z rotation
+        jumpButton.onClick.AddListener(Jump);
+        quitButton.onClick.AddListener(QuitGame); // Add listener for quit button
+        _Animator = GetComponent<Animator>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     void Update()
     {
-        PlayerWalk();               //Public Function
-        PlayerJump();               //Public Function
-        PlayerAnimationWork();      //Public Function
-    }
+        // Get horizontal input from keyboard
+        float horizontal = Input.GetAxis("Horizontal");
+        // Set velocity based on horizontal input
+        body.linearVelocity = new Vector2(horizontal * speed, body.linearVelocity.y);
 
-    public void PlayerWalk()
-    {
-        PlayerMovement = Input.GetAxis("Horizontal");
-
-        if (PlayerMovement > 0f || PlayerMovement < 0f)
+        // Player flip based on 'A' and 'D' key presses
+        if (Input.GetKeyDown(KeyCode.D))
         {
-            PlayerRigid.linearVelocity = new Vector2(PlayerMovement * PlayerSpeed, PlayerRigid.linearVelocity.y);
-             
-            //This condition will face the player to the direction
-            if (PlayerMovement > 0f)
-            {
-                transform.localScale = new Vector2(1f, 1f); //X and Y scale
-            }
-            else if (PlayerMovement < 0f)
-            {
-                transform.localScale = new Vector2(-1f, 1f); //X and Y scale with negative value of X tu turn the player other direction
-            }
-
+            spriteRenderer.flipX = false;
+        }
+        else if (Input.GetKeyDown(KeyCode.A))
+        {
+            spriteRenderer.flipX = true;
         }
 
-        else
+        // Jump with space key
+        if (Input.GetKeyDown(KeyCode.Space))
         {
-            PlayerRigid.linearVelocity = new Vector2(0, PlayerRigid.linearVelocity.y);
+            Jump();
         }
+        _Animator.SetBool("iswalking", horizontal != 0);    
     }
 
-    public void PlayerJump()
+    private void Jump()
     {
-        IsTouchingGround = Physics2D.OverlapCircle(JumpGroundCheck.position, JumpGround, GroundLayer);
-
-        if(Input.GetButtonDown("Jump") && IsTouchingGround)
+        if (!isJumping)
         {
-            PlayerRigid.linearVelocity = new Vector2(PlayerRigid.linearVelocity.x, PlayerJumpSpeed);
+            body.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
+            isJumping = true;
         }
     }
 
-    public void PlayerAnimationWork()
+    private void OnCollisionEnter2D(Collision2D other)
     {
-        PlayerAnimation.SetFloat("Speed", Mathf.Abs(PlayerRigid.linearVelocity.x));
-        PlayerAnimation.SetBool("OnGround", IsTouchingGround);
+        if (other.gameObject.CompareTag("Ground"))
+        {
+            isJumping = false;
+        }
     }
 
-   /* void OnTriggerEnter2D(Collider2D other)
+    private void QuitGame()
     {
-        if (other.tag == "FallDetector") 
-        {
-            GameLevelManager.Respawn();
-        }
-        if (other.tag == "Checkpoint")
-        {
-            PlayerRespawn = other.transform.position;
-        }
-    }*/
+        Application.Quit();
+        Debug.Log("Quit Game");
+    }
 }
