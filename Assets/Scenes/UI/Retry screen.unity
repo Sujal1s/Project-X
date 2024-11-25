@@ -807,6 +807,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   retryButton: {fileID: 1906487251}
+  mainMenuButton: {fileID: 680757916}
 --- !u!1 &859739715
 GameObject:
   m_ObjectHideFlags: 0

@@ -1899,6 +1899,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Fixed Joystick
       objectReference: {fileID: 0}
+    - target: {fileID: 2929252283123773939, guid: aaa2c939c0359ac4dbce3f49e8b90252, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -4998,6 +5002,10 @@ PrefabInstance:
     - target: {fileID: 11224974340810109, guid: daeca4b76cf5622419e6c7335b3d0a33, type: 3}
       propertyPath: m_Name
       value: Tilebreaker (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 11224974340810109, guid: daeca4b76cf5622419e6c7335b3d0a33, type: 3}
+      propertyPath: m_TagString
+      value: Ground
       objectReference: {fileID: 0}
     - target: {fileID: 3195884971491164611, guid: daeca4b76cf5622419e6c7335b3d0a33, type: 3}
       propertyPath: m_LocalPosition.x
@@ -13328,6 +13336,7 @@ GameObject:
   - component: {fileID: 1614929968}
   - component: {fileID: 1614929971}
   - component: {fileID: 1614929972}
+  - component: {fileID: 1614929973}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -13436,6 +13445,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   uiSceneName: UIScene
   panelName: PauseMenuPanel
+--- !u!114 &1614929973
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1614929967}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70ca3a0c8dc5b044a82eed031463ee90, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &1617594698 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6616829622064437726, guid: 74cd349879462114e87cf4ac4c7ca728, type: 3}
@@ -13464,7 +13485,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1620820522
 RectTransform:
   m_ObjectHideFlags: 0
@@ -16785,7 +16806,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1785110158
 RectTransform:
   m_ObjectHideFlags: 0
@@ -34545,6 +34566,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: tile
       objectReference: {fileID: 0}
+    - target: {fileID: 9195939018094046680, guid: 3af6e7c54d50d9e4aa665486661b433c, type: 3}
+      propertyPath: m_TagString
+      value: Ground
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -35195,6 +35220,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tilebreaker
       objectReference: {fileID: 0}
+    - target: {fileID: 11224974340810109, guid: daeca4b76cf5622419e6c7335b3d0a33, type: 3}
+      propertyPath: m_TagString
+      value: Ground
+      objectReference: {fileID: 0}
     - target: {fileID: 3195884971491164611, guid: daeca4b76cf5622419e6c7335b3d0a33, type: 3}
       propertyPath: m_LocalPosition.x
       value: 16.08
@@ -35690,6 +35719,10 @@ PrefabInstance:
     - target: {fileID: 8209736755095769653, guid: dc74bc9e7f6f2e6459042be8c398dee7, type: 3}
       propertyPath: m_Name
       value: tilemover
+      objectReference: {fileID: 0}
+    - target: {fileID: 8209736755095769653, guid: dc74bc9e7f6f2e6459042be8c398dee7, type: 3}
+      propertyPath: m_TagString
+      value: Ground
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
