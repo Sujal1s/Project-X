@@ -19,8 +19,20 @@ jobs:
         with:
           unityVersion: 2021.3.11f1 # Change this to your Unity version
 
+      # Activate Unity License
+      - name: Activate Unity License
+        uses: game-ci/unity-activate@v2
+        with:
+          unitySerial: ${{ secrets.UNITY_SERIAL }}
+          unityEmail: ${{ secrets.UNITY_EMAIL }}
+          unityPassword: ${{ secrets.UNITY_PASSWORD }}
+
       # Build the project
       - name: Build project
         uses: game-ci/unity-builder@v2
         with:
           targetPlatform: StandaloneWindows64 # Change this to your target platform
+
+      # Return Unity License
+      - name: Return Unity License
+        uses: game-ci/unity-return-license@v2
